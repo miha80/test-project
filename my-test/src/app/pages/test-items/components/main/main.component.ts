@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
-import { EFilterOptions, IItemElem } from '../../@types';
+import { EFilterOptions, SelectedItemPayload } from '../../@types';
 import { debounceTime, startWith, takeUntil } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { IBaseState } from '../../store/reducers';
-import { setSearchQuery } from '../../store/actions';
+import { changeItemSelection, setItemFilter, setSearchQuery } from '../../store/actions';
 import { getItemsSelector } from '../../store/selectors';
+import { Item } from 'src/app/shared/models/item';
 
 @Component({
   selector: 'app-main',
@@ -20,7 +21,7 @@ export class MainComponent implements OnInit {
   filter: FormControl;
   allFilterOptions = EFilterOptions;
   private componentDestroyed: Subject<boolean>;
-  items$: Observable<IItemElem[]>;
+  items$: Observable<Item[]>;
 
   constructor(
     private builder: FormBuilder,
@@ -36,6 +37,13 @@ export class MainComponent implements OnInit {
   }
 
   onFilterChange() {
+    this.store.dispatch(setItemFilter({
+      filter: this.filter.value,
+    }));
+  }
+
+  onItemSelected($event: SelectedItemPayload) {
+    this.store.dispatch(changeItemSelection($event));
   }
 
   ngOnInit(): void {

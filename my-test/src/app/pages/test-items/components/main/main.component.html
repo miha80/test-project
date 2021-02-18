@@ -21,7 +21,8 @@
     <br>
     <br>
     <div class="container item-container">
-      <app-items-list [items]="items$ | async"></app-items-list>
+      <app-items-list [items]="items$ | async"
+                      (itemSelected)="onItemSelected($event)"></app-items-list>
     </div>
 </div>
 

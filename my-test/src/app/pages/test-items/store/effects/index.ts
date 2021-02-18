@@ -23,10 +23,7 @@ export class TestItemsEffects {
     ofType(getNextPage),
     withLatestFrom(this.store.select(getLastPageLoadedSelector)),
     mergeMap(([_, lastPageNum]) => {
-      console.log('getPage lastPageNum', lastPageNum)
-      console.log('getPage _', _)
       const pageNum: number = Number.isInteger(lastPageNum) ? lastPageNum : -1;
-      console.log('getPage pageNum', lastPageNum)
       return this.fakeHttpClient.getItemsByPage(pageNum + 1).pipe(
         switchMap(items => {
           return [

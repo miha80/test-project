@@ -13,9 +13,7 @@ export class FakeHttpClientService {
 
   getItemsByPage(pageNum: number): Observable<Item[]> {
     let items: Item[] = [];
-    console.log('pageNum 1', pageNum)
     if (pageNum < 10) {
-      console.log('pageNum 2', pageNum)
       items = Array.from({length: this.itemsPerPage}, (_, n: number) => {
         const num: number = this.itemsPerPage * pageNum + n;
         return {

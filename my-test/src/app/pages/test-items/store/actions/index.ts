@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Item } from 'src/app/shared/models/item';
+import { EFilterOptions, SelectedItemPayload } from '../../@types';
 
 export const setSearchQuery = createAction(
   '[TEST ITEMS] Set Search Query',
@@ -18,4 +19,14 @@ export const addItems = createAction(
 export const setPageLoaded = createAction(
   '[TEST ITEMS] Set Page Loaded',
   props<{ pageNum: number }>()
+);
+
+export const setItemFilter = createAction(
+  '[TEST ITEMS] Set Item Filter',
+  props<{ filter: EFilterOptions }>()
+);
+
+export const changeItemSelection = createAction(
+  '[TEST ITEMS] Change Item Selection',
+  props<SelectedItemPayload>()
 );

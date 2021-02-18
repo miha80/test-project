@@ -2,7 +2,9 @@
   <h3>{{ itemData?.title }}</h3>
   <p>
     <label>
-      <input type="checkbox" name="color" checked="{{ itemData?.isFavorite }}">
+      <input type="checkbox" name="color" 
+              checked="{{ itemData?.isFavorite }}"
+              (change)="onSelectionChange($event)">
       &nbsp;<span>Избранные</span>
     </label>
   </p>

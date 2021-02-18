@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { IItemElem } from '../../@types';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Item } from 'src/app/shared/models/item';
+import { SelectedItemPayload } from '../../@types';
 
 @Component({
   selector: 'app-items-list',
@@ -9,9 +10,16 @@ import { IItemElem } from '../../@types';
 })
 export class ItemsListComponent implements OnInit {
  
-  @Input() items: IItemElem[];
+  @Input() items: Item[];
+  @Output() itemSelected: EventEmitter<SelectedItemPayload>;
 
-  constructor() { }
+  constructor() {
+    this.itemSelected = new EventEmitter();
+  }
+
+  onItemSelected($event: SelectedItemPayload) {
+    this.itemSelected.emit($event);
+  }
 
   ngOnInit(): void {
   }

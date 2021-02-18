@@ -1,7 +1,8 @@
 import {createReducer, on} from '@ngrx/store';
 import produce from 'immer';
 import { Item } from 'src/app/shared/models/item';
-import { addItems, setPageLoaded, setSearchQuery } from '../actions';
+import { EFilterOptions } from '../../@types';
+import { addItems, changeItemSelection, setItemFilter, setPageLoaded, setSearchQuery } from '../actions';
 
 export const TEST_ITEM_STORE_TOKEN = 'TEST_ITEM_STORE_TOKEN';
 
@@ -10,6 +11,8 @@ export interface IBaseState {
   lastPageLoaded: number;
   items:Item[];
   selectedItems: number[];
+  currentFilter: EFilterOptions;
+  allFavoriteItemsIds: number[];
 }
 
 export const initialState: IBaseState = {
@@ -17,6 +20,8 @@ export const initialState: IBaseState = {
   lastPageLoaded: undefined,
   items: [],
   selectedItems: [],
+  currentFilter: EFilterOptions.ALL,
+  allFavoriteItemsIds: [],
 };
 
 export const testItemsReducer = createReducer(
@@ -55,6 +60,41 @@ export const testItemsReducer = createReducer(
             ...draftState.items,
             ...action?.items,
           ];
+          return draftState;
+        }
+      );
+    }
+  ),
+  on(
+    setItemFilter,
+    (state: IBaseState, action) => {
+      return produce(
+        state,
+        (draftState: IBaseState) => {
+          draftState.currentFilter = action?.filter;
+          return draftState;
+        }
+      );
+    }
+  ),
+  on(
+    changeItemSelection,
+    (state: IBaseState, action) => {
+      return produce(
+        state,
+        (draftState: IBaseState) => {
+          if (action?.isFavorite) {
+            draftState.allFavoriteItemsIds = [
+              ...draftState.allFavoriteItemsIds,
+              action?.id,
+            ];
+          } else {
+            draftState.allFavoriteItemsIds = draftState.allFavoriteItemsIds.filter(nextId => {
+              return nextId !== action?.id;
+            })
+          }
+          const indexNeeded: number = draftState.items.findIndex(nextItem => nextItem.id === action?.id);
+          draftState.items[indexNeeded].isFavorite = action?.isFavorite;
           return draftState;
         }
       );
