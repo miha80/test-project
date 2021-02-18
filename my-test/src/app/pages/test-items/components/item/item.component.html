@@ -3,8 +3,8 @@
   <p>
     <label>
       <input type="checkbox" name="color" 
-              checked="{{ itemData?.isFavorite }}"
-              (change)="onSelectionChange($event)">
+              [formControl]="checkbox"
+              (change)="onSelectionChange()">
       &nbsp;<span>Избранные</span>
     </label>
   </p>

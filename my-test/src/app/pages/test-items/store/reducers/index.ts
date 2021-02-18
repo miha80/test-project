@@ -2,7 +2,7 @@ import {createReducer, on} from '@ngrx/store';
 import produce from 'immer';
 import { Item } from 'src/app/shared/models/item';
 import { EFilterOptions } from '../../@types';
-import { addItems, changeItemSelection, setItemFilter, setPageLoaded, setSearchQuery } from '../actions';
+import { addItems, changeItemSelection, setFavoriteIds, setItemFilter, setPageLoaded, setSearchQuery } from '../actions';
 
 export const TEST_ITEM_STORE_TOKEN = 'TEST_ITEM_STORE_TOKEN';
 
@@ -56,9 +56,16 @@ export const testItemsReducer = createReducer(
       return produce(
         state,
         (draftState: IBaseState) => {
+          const newItems: Item[] = action.items.map((nextItem: Item) => {
+            nextItem = {
+              ...nextItem,
+              isFavorite: draftState.allFavoriteItemsIds.includes(nextItem.id),
+            };
+            return nextItem;
+          });
           draftState.items = [
             ...draftState.items,
-            ...action?.items,
+            ...newItems,
           ];
           return draftState;
         }
@@ -95,6 +102,18 @@ export const testItemsReducer = createReducer(
           }
           const indexNeeded: number = draftState.items.findIndex(nextItem => nextItem.id === action?.id);
           draftState.items[indexNeeded].isFavorite = action?.isFavorite;
+          return draftState;
+        }
+      );
+    }
+  ),
+  on(
+    setFavoriteIds,
+    (state: IBaseState, action) => {
+      return produce(
+        state,
+        (draftState: IBaseState) => {
+          draftState.allFavoriteItemsIds = action?.ids;
           return draftState;
         }
       );

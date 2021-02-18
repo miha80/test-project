@@ -30,3 +30,8 @@ export const changeItemSelection = createAction(
   '[TEST ITEMS] Change Item Selection',
   props<SelectedItemPayload>()
 );
+
+export const setFavoriteIds = createAction(
+  '[TEST ITEMS] Set Favorite Ids',
+  props<{ ids: number[] }>()
+);
