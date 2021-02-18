@@ -1,1 +1,24 @@
-<p>main works!</p>
+<div class="main-container">
+    <h2>Test Form</h2>
+    <div class="container form-container">
+      <form action="/action_page.php">
+
+        <div class="row">
+          <input class="filter" type="text" name="lastname" placeholder="Фильтр по ключевому слову">
+        </div>
+        <div class="row">
+          <select name="country">
+            <option value="australia" selected>Все</option>
+            <option value="canada">Избранное</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <br>
+    <br>
+    <div class="container item-container">
+      <app-item [itemData]="item"></app-item>
+    </div>
+</div>
+
+

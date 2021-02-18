@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-main',
@@ -7,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  search: FormControl;
+  item = {
+    title: 'title',
+    description: 'This guide explains how to set up your Angular project to begin using Angular Material. It includes information on prerequisites, installing Angular Material, and optionally displaying a sample material component in your application to verify your setup.',
+    isFavorite: true,
+  }
+
+  constructor() {
+    this.search = new FormControl();
+  }
 
   ngOnInit(): void {
   }

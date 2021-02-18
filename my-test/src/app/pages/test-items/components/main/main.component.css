@@ -1,0 +1,43 @@
+.main-container {
+    position: relative;
+    max-width: 1200px;
+    padding: 30px;
+}
+
+input[type=text], select, textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.filter {
+    margin-bottom: var(--item-margin);
+}
+
+.form-container {
+    max-width: 600px;
+    background-color: var(--background-color);
+    padding: 25px;
+}
+
+.container {
+    position: relative;
+    border-radius: 5px;
+}
+
+.item-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin: -10px;
+}
+
+@media screen and (max-width: 600px) {
+    input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
