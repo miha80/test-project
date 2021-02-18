@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TestItemsModule } from './pages/test-items/test-items.module';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './ngrx/main-reducers';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { reducers, metaReducers } from './ngrx/main-reducers';
         strictActionImmutability: true
       }
     }),
+    EffectsModule.forRoot([]), 
   ],
   providers: [],
   bootstrap: [AppComponent]
