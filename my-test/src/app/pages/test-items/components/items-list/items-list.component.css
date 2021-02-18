@@ -1,0 +1,6 @@
+.item-container, :host {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin: -10px;
+}

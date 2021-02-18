@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { EFilterOptions } from '../../@types';
+import { Observable, Subject } from 'rxjs';
+import { EFilterOptions, IItemElem } from '../../@types';
 import { debounceTime, startWith, takeUntil } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { IBaseState } from '../../store/reducers';
-import { setSearchQuery } from '../../store/selectors';
+import { setSearchQuery } from '../../store/actions';
+import { getItemsSelector } from '../../store/selectors';
 
 @Component({
   selector: 'app-main',
@@ -19,6 +20,7 @@ export class MainComponent implements OnInit {
   filter: FormControl;
   allFilterOptions = EFilterOptions;
   private componentDestroyed: Subject<boolean>;
+  items$: Observable<IItemElem[]>;
 
   constructor(
     private builder: FormBuilder,
@@ -45,6 +47,7 @@ export class MainComponent implements OnInit {
       this.store.dispatch(setSearchQuery({query}));
     })
 
+    this.items$ = this.store.select(getItemsSelector);
   }
 
   ngOnDestroy() {

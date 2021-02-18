@@ -28,13 +28,6 @@ input[type=text], select, textarea {
     border-radius: 5px;
 }
 
-.item-container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    margin: -10px;
-}
-
 @media screen and (max-width: 600px) {
     input[type=submit] {
         width: 100%;

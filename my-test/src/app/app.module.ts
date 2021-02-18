@@ -7,6 +7,7 @@ import { TestItemsModule } from './pages/test-items/test-items.module';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './ngrx/main-reducers';
 import { EffectsModule } from '@ngrx/effects';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { EffectsModule } from '@ngrx/effects';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    CoreModule,
     TestItemsModule,
     StoreModule.forRoot(
       reducers, {

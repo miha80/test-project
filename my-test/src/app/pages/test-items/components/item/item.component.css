@@ -1,12 +1,11 @@
-.item {
-    width: calc(25% - var(--item-margin));
+:host {
     margin: var(--item-margin);
-    padding: 25px;
+    padding: 20px;
     background-color: var(--background-color);
 }
 
 @media screen and (max-width: 600px) {
-    .item {
+    :host {
         width: 100%;
     }
 }
