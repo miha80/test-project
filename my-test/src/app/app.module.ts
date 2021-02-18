@@ -26,7 +26,7 @@ import { CoreModule } from './core/core.module';
         strictActionImmutability: true
       }
     }),
-    EffectsModule.forRoot([]), 
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent]

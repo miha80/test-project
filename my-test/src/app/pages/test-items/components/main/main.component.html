@@ -19,11 +19,9 @@
       </form>
     </div>
     <br>
-    <br>
-    <div class="container item-container">
-      <app-items-list [items]="items$ | async"
-                      (itemSelected)="onItemSelected($event)"></app-items-list>
-    </div>
+    <app-items-list [items]="items$ | async"
+                    (itemSelected)="onItemSelected($event)"
+                    (needItems)="onNeedItems()"></app-items-list>
 </div>
 
 

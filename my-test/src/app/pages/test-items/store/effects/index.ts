@@ -24,7 +24,7 @@ export class TestItemsEffects {
     startWith(),
     take(1),
     map(() => {
-      let savedFavoriteIds: number[] = this.storageHelper.getSavedFavoriteIds();
+      const savedFavoriteIds: number[] = this.storageHelper.getSavedFavoriteIds();
       return setFavoriteIds({ ids: savedFavoriteIds });
     }),
     tap(() => this.store.dispatch(getNextPage())),
@@ -40,7 +40,7 @@ export class TestItemsEffects {
           return [
             addItems({ items }),
             setPageLoaded({ pageNum: pageNum + 1 })
-          ]
+          ];
         }),
         catchError(e => {
           console.log(e);

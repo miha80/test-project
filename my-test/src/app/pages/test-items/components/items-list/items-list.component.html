@@ -1,3 +1,7 @@
-<app-item *ngFor="let item of items"
-          [itemData]="item"
-          (selected)="onItemSelected($event)"></app-item>
+<div #itemContainer class="item-container">
+    <app-item *ngFor="let item of items"
+            [itemData]="item"
+            (selected)="onItemSelected($event)"></app-item>
+
+    <div #intersectionAnchor class="ancor"></div>
+</div>

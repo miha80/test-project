@@ -14,8 +14,8 @@ const getMatchSearchQuery: (state: IBaseState) => ItemFilter = (state: IBaseStat
   const sq: string = state.searchQuery.toLocaleLowerCase().trim();
   return (item: Item) => {
     return item?.title.toLocaleLowerCase().includes('sq') || item.description.toLocaleLowerCase().includes(sq);
-  }
-}
+  };
+};
 
 const getAllFilters: (state: IBaseState) => ItemFilter[] = (state: IBaseState) => {
   let allFilters: ItemFilter[] = [];
@@ -30,8 +30,8 @@ const getAllFilters: (state: IBaseState) => ItemFilter[] = (state: IBaseState) =
       getMatchSearchQuery(state),
     ];
   }
-  return allFilters
-}
+  return allFilters;
+};
 
 export const getItemsSelector = createSelector(
   testItemsFeatureSelector, (state: IBaseState) => {
@@ -41,5 +41,5 @@ export const getItemsSelector = createSelector(
     }
     return state.items.filter((nextItem: Item) => {
       return allFilters.every((nextFilter: ItemFilter) => nextFilter(nextItem));
-    })
+    });
   });

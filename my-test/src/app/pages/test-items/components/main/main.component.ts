@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { EFilterOptions, SelectedItemPayload } from '../../@types';
 import { debounceTime, startWith, takeUntil } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { IBaseState } from '../../store/reducers';
-import { changeItemSelection, setItemFilter, setSearchQuery } from '../../store/actions';
+import { changeItemSelection, getNextPage, setItemFilter, setSearchQuery } from '../../store/actions';
 import { getItemsSelector } from '../../store/selectors';
 import { Item } from 'src/app/shared/models/item';
 
@@ -14,7 +14,7 @@ import { Item } from 'src/app/shared/models/item';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
 
   testForm: FormGroup;
   search: FormControl;
@@ -46,6 +46,10 @@ export class MainComponent implements OnInit {
     this.store.dispatch(changeItemSelection($event));
   }
 
+  onNeedItems() {
+    this.store.dispatch(getNextPage());
+  }
+
   ngOnInit(): void {
     this.search.valueChanges.pipe(
       startWith(''),
@@ -53,7 +57,7 @@ export class MainComponent implements OnInit {
       takeUntil(this.componentDestroyed),
     ).subscribe((query: string) => {
       this.store.dispatch(setSearchQuery({query}));
-    })
+    });
 
     this.items$ = this.store.select(getItemsSelector);
   }

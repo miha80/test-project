@@ -1,7 +1,16 @@
+:host {
+    display: block;
+    height: 100%;
+}
+
 .main-container {
     position: relative;
     max-width: 1200px;
-    padding: 30px;
+    height: 100%;
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }
 
 input[type=text], select, textarea {

@@ -9,7 +9,7 @@ export const TEST_ITEM_STORE_TOKEN = 'TEST_ITEM_STORE_TOKEN';
 export interface IBaseState {
   searchQuery: string;
   lastPageLoaded: number;
-  items:Item[];
+  items: Item[];
   selectedItems: number[];
   currentFilter: EFilterOptions;
   allFavoriteItemsIds: number[];
@@ -98,7 +98,7 @@ export const testItemsReducer = createReducer(
           } else {
             draftState.allFavoriteItemsIds = draftState.allFavoriteItemsIds.filter(nextId => {
               return nextId !== action?.id;
-            })
+            });
           }
           const indexNeeded: number = draftState.items.findIndex(nextItem => nextItem.id === action?.id);
           draftState.items[indexNeeded].isFavorite = action?.isFavorite;
