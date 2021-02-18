@@ -1,0 +1,12 @@
+<div class="item">
+  <h3>{{ itemData?.title }}</h3>
+  <p>
+    <label>
+      <input type="checkbox" name="color" checked="{{ itemData?.isFavorite }}">
+      &nbsp;<span>Избранные</span>
+    </label>
+  </p>
+  <p>
+    {{ itemData?.description }}
+  </p>
+</div>
