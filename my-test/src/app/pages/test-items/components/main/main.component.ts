@@ -17,11 +17,6 @@ export class MainComponent implements OnInit {
   testForm: FormGroup;
   search: FormControl;
   filter: FormControl;
-  item = {
-    title: 'title',
-    description: 'This guide explains how to set up your Angular project to begin using Angular Material. It includes information on prerequisites, installing Angular Material, and optionally displaying a sample material component in your application to verify your setup.',
-    isFavorite: true,
-  };
   allFilterOptions = EFilterOptions;
   private componentDestroyed: Subject<boolean>;
 

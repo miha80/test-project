@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { testItemsReducer, TEST_ITEM_STORE_TOKEN } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { TestItemsEffects } from './store/effects';
+import { ItemsListComponent } from './components/items-list/items-list.component';
 
 
 
@@ -13,6 +14,7 @@ import { TestItemsEffects } from './store/effects';
   declarations: [
     MainComponent,
     ItemComponent,
+    ItemsListComponent,
   ],
   imports: [
     SharedModule,
